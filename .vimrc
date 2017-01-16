@@ -46,14 +46,22 @@ set guitablabel=%t
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-"Split lines on commas
-nmap gh, :s/\v,/\r,/g<Return>
-"(something) -> ( something )
-nmap gh<Space> ma0f(a<Space><Esc>$a<Space><Esc>F)i<Space><Esc>A<Backspace><Esc>'a
-"Align selection on commas or left-paren
-xmap gh( ga<C-X><Bslash>v(<Bslash>(\|,)<Return>
-"Align selection on righ-paren
-xmap gh) ga<C-X><Bslash>v[^<Bslash>.]<Bslash>)<Return>
+
+"    ---- haskell module-import alignment mappings. This is for a very
+"         customized workflow, and basically helps me achieve import lists
+"         that look like [this](http://tinyurl.com/glxp3k2)
+"   Split lines on commas
+    nmap gh, :s/\v,/\r,/g<Return>
+
+"   (foo) -> ( foo )
+    nmap gh<Space> ma0f(a<Space><Esc>$a<Space><Esc>F)i<Space><Esc>A<Backspace><Esc>'a
+
+"   Align selection on commas or left-paren
+    xmap gh( ga<C-X><Bslash>v(<Bslash>(\|,)<Return>
+
+"   Align selection on righ-paren
+    xmap gh) ga<C-X><Bslash>v[^<Bslash>.]<Bslash>)<Return>
+
 "-----END VIM-EASY-ALIGN-----"
 
 "-----GOYO/LIMELIGHT-----"
@@ -103,6 +111,7 @@ set smartindent
 set ts=4
 set sw=4
 set nowrap
+set backspace=indent,eol,start
 
 if &term =~ '^screen'
         set ttymouse=xterm2

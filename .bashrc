@@ -644,14 +644,12 @@ fi
 
 alias ls='ls --color=auto'
 alias dusort='du -a * | sort -n | sed -Ee ‘s/^[0-9]+./”/’ -e ‘s/$/”/’ | xargs du -ah'
-alias goingrogue='cd /home/atticus/programming/cpp/roguelike; git pull'
-alias dorf='cd /home/atticus/programming/python/df-legends-reader; git pull'
 alias pac='sudo pacman -S'
 alias pacu='sudo pacman -Syu'
 eval $(dircolors ~/.dir_colors)
 export EDITOR='vim'
-export GOPATH=/home/atticus/.go
-export PATH=$PATH:/home/atticus/.cabal/bin:/home/atticus/.go/bin:/home/atticus/bin:/home/atticus/.local/bin
+export GOPATH=~/.go
+export PATH=$PATH:~/.cabal/bin:~/.go/bin:~/bin:~/.local/bin
 
 export PGDATA=/var/lib/postgres/data
 

@@ -7,3 +7,13 @@ The arrow glyphs in that package were too tall (probably due to the way they're 
 so I edited them with fontforge to make them shorter.
 * I've mostly been coding in Haskell lately, so a couple of my Vim configs are pretty Haskell-centric.
 * The bashrc is kind of a mess. I apologize to anyone who looks at it.
+
+
+####Screenshots
+Busy Vim:
+
+![Busy](http://i.imgur.com/QxR7l60.png)
+
+Distraction-free Vim (using Goyo and Limelight):
+
+![Distraction-free mode](http://i.imgur.com/0B6fy1E.png)

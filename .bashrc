@@ -652,6 +652,7 @@ export GOPATH=~/.go
 export PATH=$PATH:~/.cabal/bin:~/.go/bin:~/bin:~/.local/bin
 
 export PGDATA=/var/lib/postgres/data
+export PGHOST=/tmp
 
 set -o vi
 shopt -s extglob

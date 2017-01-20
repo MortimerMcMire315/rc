@@ -86,6 +86,7 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 filetype plugin indent on
 syntax on
+set re=1
 
 "-----HIGHLIGHT EXTRA SPACE-----"
 highlight ExtraWhitespace ctermbg=091 guibg=red

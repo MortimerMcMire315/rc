@@ -100,6 +100,16 @@ set background=dark
 colorscheme solarized
 "-----END SOLARIZED-----"
 
+"-----Grep directory for word under cursor-----"
+function Grep()
+    let wordundercursor = expand("<cword>")
+    execute "!grep -R " . wordundercursor . " \."
+endfunction
+
+command! Grep call Grep()
+nmap gR :Grep<return>
+"-----End Grep thing-----"
+
 hi Search ctermbg=053
 
 set hidden

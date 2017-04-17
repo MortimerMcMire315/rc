@@ -405,7 +405,7 @@ alias pacu='sudo pacman -Syu'
 eval "$(dircolors ~/.dir_colors)"
 export EDITOR='vim'
 export GOPATH=~/.go
-export PATH=$PATH:~/.cabal/bin:~/.go/bin:~/bin:~/.local/bin
+export PATH=$PATH:~/.cabal/bin:~/.go/bin:~/bin:~/.local/bin:~/.gem/ruby/2.4.0/bin
 
 export PGDATA=/var/lib/postgres/data
 export PGHOST=/tmp
@@ -416,5 +416,5 @@ shopt -s extglob
 if [ "$(whoami)" = "root" ]; then
     PS1='\[\e[1;31m\]\u@\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;31m\]\$\[\e[m\] \[\e[0;37m\]'
 else
-    PS1='\[\e[1;35m\]\u\e[0m@\e[1;37m\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;34m\]\$\[\e[m\] \[\e[0;37m\]'
+    PS1='\[\e[1;35m\]\u\[\e[0m\]@\[\e[1;37m\]\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;34m\]\$\[\e[m\] \[\e[0;37m\]'
 fi

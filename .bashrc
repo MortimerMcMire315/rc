@@ -118,12 +118,6 @@ if [ -x /usr/games/fortune ]; then
     /usr/games/fortune -s     # Makes our day a bit more fun.... :-)
 fi
 
-function _exit()              # Function to run upon exit of shell.
-{
-    echo -e "${BRed}Hasta la vista, baby${NC}"
-}
-trap _exit EXIT
-
 export TIMEFORMAT=$'\nreal %3R\tuser %3U\tsys %3S\tpcpu %P\n'
 export HISTIGNORE="&:bg:fg:ll:h"
 #export HISTTIMEFORMAT="$(echo -e "${BCyan}")[%d/%m %H:%M:%S]$(echo -e ${NC}) "
@@ -402,10 +396,11 @@ alias ls='ls --color=auto'
 alias dusort="du -a * | sort -n | sed -Ee 's/^[0-9]+./\"/' -e 's/$/\"/' | xargs du -ah"
 alias pac='sudo pacman -S'
 alias pacu='sudo pacman -Syu'
+alias wine32='env WINEARCH=win32 WINEPREFIX="$HOME/.wine32" wine'
 eval "$(dircolors ~/.dir_colors)"
 export EDITOR='vim'
 export GOPATH=~/.go
-export PATH=$PATH:~/.cabal/bin:~/.go/bin:~/bin:~/.local/bin:~/.gem/ruby/2.4.0/bin
+export PATH=$PATH:~/.cabal/bin:~/.go/bin:~/bin:~/.local/bin:~/.gem/ruby/2.4.0/bin:~/.config/composer/vendor/bin
 
 export PGDATA=/var/lib/postgres/data
 export PGHOST=/tmp

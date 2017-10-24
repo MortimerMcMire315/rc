@@ -1,4 +1,4 @@
-"-----VUNDLE PLUGINS-----"
+""-----VUNDLE PLUGINS-----"
 set nocompatible
 filetype off
 
@@ -13,14 +13,27 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'lumiliet/vim-twig'
 Plugin 'junegunn/vim-easy-align'
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
 Plugin 'altercation/vim-colors-solarized'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-fugitive'
+Plugin 'joonty/vdebug'
+
 
 call vundle#end()
 
 "-----END VUNDLE PLUGINS-----"
+
+"Remap F10 for debugging
+nmap <F8> <F10>
+
+"Move between / delete buffers
+map gn :bn<cr>
+map gp :bp<cr>
+map gd :bd<cr>
 
 "-----SYNTASTIC SETTINGS-----"
 set statusline+=%#warningmsg#
@@ -33,9 +46,14 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:airline_theme='base16'
 let g:syntastic_loc_list_height = 4
+let g:syntastic_filetype_map = { 'html.twig' : 'twig' }
+let g:syntastic_twig_checkers = ['twiglint']
+let g:syntastic_twig_twiglint_exec = 'php'
+let g:syntastic_twig_twiglint_exe = 'twig-lint'
 "-----END SYNTASTIC SETTINGS-----"
 
 "-----AIRLINE-----"
+let g:airline#extensions#tabline#fnamemod=':t'
 let g:airline_powerline_fonts = 1
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
@@ -115,12 +133,11 @@ hi Search ctermbg=053
 
 set hidden
 set number
-set et
-set autoindent
+set expandtab
 set smarttab
-set smartindent
-set ts=4
-set sw=4
+set autoindent
+set tabstop=4
+set shiftwidth=4
 set nowrap
 set backspace=indent,eol,start
 
@@ -160,8 +177,6 @@ endfunction
 
 noremap  <buffer> <silent> k gk
 noremap  <buffer> <silent> j gj
-noremap  <buffer> <silent> 0 g0
-noremap  <buffer> <silent> $ g$
 
 "----- Haskell rebindings for fast typing (THAT PUN WAS INCREDIBLE!)-----"
 autocmd BufNewFile,BufRead *.hs inoremap <buffer> <silent> -= <Space>-><Space>

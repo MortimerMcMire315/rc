@@ -21,6 +21,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'joonty/vdebug'
+Plugin 'mattn/emmet-vim'
 
 
 call vundle#end()

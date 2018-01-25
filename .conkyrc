@@ -1,0 +1,49 @@
+conky.config = {
+    alignment = 'top_right',
+    background = true,
+    border_width = 0,
+    cpu_avg_samples = 2,
+	default_color = 'grey',
+    default_outline_color = 'black',
+    default_shade_color = 'black',
+    draw_borders = false,
+    draw_graph_borders = true,
+    draw_outline = false,
+    draw_shades = false,
+    use_xft = true,
+    font = 'Terminus:size=9',
+    xftalpha = 0.8,
+    minimum_height = 5,
+	minimum_width = 5,
+	maximum_width = 450,
+	gap_x = 100,
+    net_avg_samples = 2,
+    no_buffers = true,
+    text_buffer_size = 1024,
+    out_to_console = false,
+    out_to_stderr = false,
+    extra_newline = false,
+    own_window = true,
+    own_window_argb_value = 0,
+    own_window_argb_visual = true,
+    own_window_transparent = false,
+    own_window_type = normal,
+    own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager,below',
+    stippled_borders = 3,
+    update_interval = 5,
+    double_buffer = true,
+    uppercase = false,
+    use_spacer = 'left',
+    pad_percents = 3,
+    temperature_unit = 'celsius',
+    show_graph_scale = false,
+    show_graph_range = false,
+    override_utf8_locale = false,
+}
+
+conky.text = [[
+$hr
+${font Terminus:size=10:bold}${color 0077ff}To do ${color}
+${color Grey}${font Deja Vu Sans Mono:size=9:bold}${exec task list}
+$hr
+]]

@@ -50,6 +50,7 @@ export DISPLAY
 #set -o nounset     # These  two options are useful for debugging.
 #set -o xtrace
 alias debug="set -o nounset; set -o xtrace"
+alias jtags="ctags -R app config lib && sed -i '' -E '/^(if|switch|function|module\.exports|it|describe).+language:js$/d' tags"
 alias steamdir="cd ~/.steam/steam/steamapps/common"
 
 ulimit -S -c 0      # Don't want coredumps.
@@ -413,3 +414,9 @@ if [ "$(whoami)" = "root" ]; then
 else
     PS1='\[\e[1;35m\]\u\[\e[0m\]@\[\e[1;37m\]\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;34m\]\$\[\e[m\] \[\e[0;37m\]'
 fi
+
+PATH="/home/sayoder/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/sayoder/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/sayoder/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/sayoder/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/sayoder/perl5"; export PERL_MM_OPT;

@@ -22,6 +22,9 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-fugitive'
 Plugin 'joonty/vdebug'
 Plugin 'mattn/emmet-vim'
+Plugin 'tpope/vim-abolish'
+Plugin 'chrisbra/Recover.vim'
+Plugin 'swekaj/php-foldexpr.vim'
 
 
 call vundle#end()
@@ -83,6 +86,15 @@ nmap ga <Plug>(EasyAlign)
 
 "-----END VIM-EASY-ALIGN-----"
 
+"-----CTRLP-----"
+"Ignore vendor directory on composer projects
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/](vendor|cache|\.git)$'
+  \ }
+
+"-----END CTRLP-----"
+
 "-----GOYO/LIMELIGHT-----"
 " Color name (:help cterm-colors) or ANSI code
 let g:limelight_conceal_ctermfg = 'gray'
@@ -129,6 +141,20 @@ endfunction
 command! Grep call Grep()
 nmap gR :Grep<return>
 "-----End Grep thing-----"
+
+"-----Generate ctags for current file-----"
+function GenCtags()
+    execute "silent !ctags %"
+    execute "redraw!"
+endfunction
+
+command! GenCtags call GenCtags()
+nmap gC :GenCtags<return>
+"-----End ctags thing-----"
+
+"-----Auto-close braces-----"
+inoremap {<CR>  {<CR>}<Esc>O
+
 
 hi Search ctermbg=053
 

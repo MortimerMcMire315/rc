@@ -1,12 +1,11 @@
 [Configuration]
-FontName=DejaVu Sans Mono for Powerline 10
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBellUrgent=FALSE
 MiscBordersDefault=TRUE
 MiscCursorBlinks=FALSE
 MiscCursorShape=TERMINAL_CURSOR_SHAPE_BLOCK
-MiscDefaultGeometry=80x24
+MiscDefaultGeometry=90x28
 MiscInheritGeometry=FALSE
 MiscMenubarDefault=FALSE
 MiscMouseAutohide=FALSE
@@ -23,8 +22,16 @@ MiscDefaultWorkingDir=
 MiscRewrapOnResize=TRUE
 MiscUseShiftArrowsToScroll=FALSE
 ScrollingBar=TERMINAL_SCROLLBAR_NONE
-
 ColorCursor=#93a1a1
 ColorForeground=#839496
 ColorBackground=#002b36
 ColorPalette=#073642;#dc322f;#859900;#b58900;#268bd2;#d33682;#2aa198;#eee8d5;#002b36;#cb4b16;#586e75;#657b83;#839496;#6c71c4;#93a1a1;#fdf6e3
+MiscCopyOnSelect=TRUE
+MiscShowRelaunchDialog=TRUE
+MiscSlimTabs=FALSE
+MiscNewTabAdjacent=FALSE
+MiscSearchDialogOpacity=100
+MiscShowUnsafePasteDialog=FALSE
+FontName=DejaVu Sans Mono 13
+ShortcutsNoMenukey=TRUE
+

@@ -5,26 +5,28 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'pbrisbin/vim-syntax-shakespeare'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'airblade/vim-gitgutter'
+"Plugin 'airblade/vim-gitgutter'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'chrisbra/csv.vim'
+Plugin 'chrisbra/Recover.vim'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'lumiliet/vim-twig'
-Plugin 'junegunn/vim-easy-align'
+Plugin 'joonty/vdebug'
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
-Plugin 'altercation/vim-colors-solarized'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'lumiliet/vim-twig'
+"Plugin 'mattn/emmet-vim'
+Plugin 'pbrisbin/vim-syntax-shakespeare'
+"Plugin 'swekaj/php-foldexpr.vim'
+"Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-eunuch'
 Plugin 'tpope/vim-fugitive'
-Plugin 'joonty/vdebug'
-Plugin 'mattn/emmet-vim'
-Plugin 'tpope/vim-abolish'
-Plugin 'chrisbra/Recover.vim'
-Plugin 'swekaj/php-foldexpr.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'VundleVim/Vundle.vim'
 
 
 call vundle#end()
@@ -39,10 +41,21 @@ map gn :bn<cr>
 map gp :bp<cr>
 map gd :bd<cr>
 
+"Toggle paste on/off
+map gsnp :set nopaste<cr>
+map gsp :set paste<cr>
+
+"-----CSV SETTINGS-----"
+map gsva :%CSVArrangeColumn<cr>
+map gsvu :%CSVUnArrangeColumn<cr>
+"-----END CSV SETTINGS-----"
+
 "-----SYNTASTIC SETTINGS-----"
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+
+map gst :SyntasticToggleMode<cr>
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -54,6 +67,7 @@ let g:syntastic_filetype_map = { 'html.twig' : 'twig' }
 let g:syntastic_twig_checkers = ['twiglint']
 let g:syntastic_twig_twiglint_exec = 'php'
 let g:syntastic_twig_twiglint_exe = 'twig-lint'
+let g:syntastic_python_checkers = ['pycodestyle', 'python']
 "-----END SYNTASTIC SETTINGS-----"
 
 "-----AIRLINE-----"
@@ -101,13 +115,13 @@ let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
 function! s:goyo_enter()
     SyntasticToggleMode
-    Limelight
+"    Limelight
 endfunction
 
 function! s:goyo_leave()
     SyntasticToggleMode
     SyntasticCheck
-    Limelight!
+"    Limelight!
 endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
@@ -122,6 +136,8 @@ set re=1
 "-----HIGHLIGHT EXTRA SPACE-----"
 highlight ExtraWhitespace ctermbg=091 guibg=red
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=091 guibg=red
+autocmd InsertLeave * highlight ExtraWhitespace ctermbg=091 guibg=red
+autocmd InsertEnter * highlight ExtraWhitespace ctermbg=NONE guibg=NONE
 match ExtraWhitespace /\s\+$/
 "-----END HIGHLIGHT-----"
 
@@ -133,13 +149,22 @@ colorscheme solarized
 "-----END SOLARIZED-----"
 
 "-----Grep directory for word under cursor-----"
-function Grep()
+function MoodleGrep()
     let wordundercursor = expand("<cword>")
-    execute "!grep -R " . wordundercursor . " \."
+    let moodleconfig = findfile('config.php', '.;')
+    execute "!grep -RE '(function|class) " . wordundercursor . "' $(dirname " . moodleconfig . ")"
 endfunction
 
-command! Grep call Grep()
-nmap gR :Grep<return>
+function MoodleLibGrep()
+    let wordundercursor = expand("<cword>")
+    let moodleconfig = findfile('config.php', '.;')
+    execute "!grep -RE '(function|class) " . wordundercursor . "' $(dirname " . moodleconfig . ")/lib "
+endfunction
+
+command! MoodleGrep call MoodleGrep()
+command! MoodleLibGrep call MoodleLibGrep()
+nmap gRM :MoodleGrep<return>
+nmap gRL :MoodleLibGrep<return>
 "-----End Grep thing-----"
 
 "-----Generate ctags for current file-----"
@@ -208,3 +233,16 @@ noremap  <buffer> <silent> j gj
 "----- Haskell rebindings for fast typing (THAT PUN WAS INCREDIBLE!)-----"
 autocmd BufNewFile,BufRead *.hs inoremap <buffer> <silent> -= <Space>-><Space>
 autocmd BufNewFile,BufRead *.hs inoremap <buffer> <silent> =- <Space>=><Space>
+
+"autocmd BufNewFile,BufRead *.php setlocal fdm=indent
+autocmd BufnewFile,BufRead /home/sayoder/Documents/pnt/*.html setlocal ft=liquid
+autocmd BufnewFile,BufRead /home/sayoder/Documents/pnt/*.markdown setlocal ft=liquid
+autocmd BufnewFile,BufRead /home/sayoder/Documents/pnt/*/*.html setlocal ft=liquid
+autocmd BufnewFile,BufRead /home/sayoder/Documents/pnt/*/*.markdown setlocal ft=liquid
+autocmd BufNewFile,BufRead *.markdown setlocal wrap | setlocal tw=80
+
+autocmd BufNewFile,BufRead *.markdown imap <C-g>ji {% include photo.html id="" %}<esc>F"i
+autocmd BufNewFile,BufRead *.markdown nmap gji i{% include photo.html id="" %}<esc>F"i
+autocmd BufNewFile,BufRead *.html setlocal ts=2 | setlocal sw=2
+
+map gf10 <f10>
